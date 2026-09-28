@@ -36,7 +36,7 @@
       <div class="hero-stage" aria-label="모두의프로암 앱 미리보기">
         <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="stage-grid"></div>
         <span class="stage-note">ONE APP.<br>CONNECTED EXPERIENCES.</span>
-        <div class="phone hero-phone" id="hero-media"><img src="assets/home.webp" width="660" height="1338" alt="모두의프로암 Prod 앱 홈. 프로암 이벤트 배너와 주요 이벤트를 보여주는 화면." fetchpriority="high"></div>
+        <div class="phone hero-phone" id="hero-media"><video id="splash-video" src="assets/splash-full.mp4" poster="assets/splash-poster.webp" width="540" height="1200" muted loop playsinline preload="metadata" aria-label="모두의프로암 앱 실행 시 스플래시 애니메이션에서 홈으로 이어지는 실제 화면"></video></div><button class="media-controls hero-media-control" type="button" aria-controls="splash-video">시연 재생 ▶</button>
         <div class="floating-label label-top"><span class="mini-icon">↗</span><div>Flutter rebuild<small>구조부터 새롭게</small></div></div>
         <div class="floating-label label-bottom"><span class="mini-icon">✓</span><div>From build to release<small>구현 · 심사 · 운영</small></div></div>
         <span class="stage-index">01 — MOBILE EXPERIENCE</span>
@@ -50,8 +50,8 @@
     </section>
 
     <section class="experience section-wrap" id="experience">
-      <div class="section-heading"><div><p class="eyebrow">02 / IN THE APP</p><h2>하나의 앱 안에서<br>이어지는 골프 경험.</h2></div><p>실제 서비스(Prod)의 Android 앱 시연입니다.<br>첫 화면은 iOS, 아래 영상은 Android에서 촬영했습니다.</p></div>
-      <div class="demo-grid" id="demo-grid"></div><noscript><p>앱 시연: <a href="assets/home-demo.mp4">홈 탐색</a> · <a href="assets/proam-demo.mp4">이벤트 상세</a> · <a href="assets/gallery-demo.mp4">이미지 탐색</a></p></noscript><p class="capture-note">촬영: 2026.09 · 시스템 상태 표시줄 제외 · 비로그인 상태의 조회 흐름 · 화면의 이벤트 정보는 촬영 당시 기준입니다.</p>
+      <div class="section-heading"><div><p class="eyebrow">02 / IN THE APP</p><h2>하나의 앱 안에서<br>이어지는 골프 경험.</h2></div><p>실제 서비스(Prod)의 Android 앱 시연입니다.<br>스플래시부터 탐색·반응·보상까지, 실제 동작을 담았습니다.</p></div>
+      <div class="demo-grid" id="demo-grid"></div><noscript><p>앱 시연: <a href="assets/home-full.mp4">홈 탐색</a> · <a href="assets/proam-full.mp4">이벤트 상세</a> · <a href="assets/club-full.mp4">클럽 체류 보상</a></p></noscript><p class="capture-note">촬영: 2026.09 · Android Prod · 로그인 상태의 실제 시연 · 상태 표시줄과 하단 홈 바를 포함한 전체 화면 · 기기 노치 모양 재현 · 화면의 콘텐츠는 촬영 당시 기준입니다.</p>
     </section>
 
     <section class="engineering" id="engineering">

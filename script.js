@@ -1,8 +1,8 @@
 /* 실제 캡처 파일과 설명은 이 배열에서 관리합니다. */
 const demonstrations = [
-  {category:'HOME · DISCOVERY',title:'서비스를 한눈에, 홈 탐색',image:'assets/home-poster.webp',video:'assets/home-demo.mp4',alt:'모두의프로암 홈에서 이벤트, 레슨, 소식 영역으로 스크롤하는 실제 앱 시연',description:'이벤트·레슨·소식을 하나의 탐색 흐름으로 구성했습니다. 공통 내비게이션과 목록 화면을 연결한 실제 홈 화면입니다.'},
-  {category:'PROAM · EVENT',title:'이벤트의 맥락을 담은 상세 화면',image:'assets/proam-poster.webp',video:'assets/proam-demo.mp4',alt:'테일러메이드 프로암 이벤트의 대표 이미지에서 행사 안내로 스크롤하는 실제 앱 시연',description:'대표 이미지부터 응원 상태, 일정과 참가 안내까지 연결했습니다. 로그인 여부에 따른 행동 버튼과 서버 상태를 화면에 반영합니다.'},
-  {category:'CLUB · MEDIA',title:'피드에서 이어지는 이미지 탐색',image:'assets/gallery-poster.webp',video:'assets/gallery-demo.mp4',alt:'공식 계정 피드에 첨부된 이미지를 썸네일로 전환하는 실제 앱 시연',description:'피드의 첨부 이미지를 전체 화면에서 살펴보고 썸네일로 전환합니다. 이미지 준비·업로드 구조는 아래 기술 사례에서 설명합니다.'}
+  {category:'HOME · INTERACTION',title:'홈 탐색에서 좋아요까지',image:'assets/home-full-poster.webp',video:'assets/home-full.mp4',alt:'홈을 스크롤하여 지금 핫한 인기 게시물의 첫 피드에 좋아요를 누르는 실제 앱 시연',description:'홈의 이벤트·레슨·소식을 지나 인기 게시물로 이동합니다. 첫 피드의 좋아요를 누르면 하트와 숫자가 함께 바뀝니다.'},
+  {category:'PROAM · EXPLORATION',title:'이벤트에서 스폰서 갤러리로',image:'assets/proam-full-poster.webp',video:'assets/proam-full.mp4',alt:'프로암 탭의 첫 이벤트에 진입하고 공식 스폰서 갤러리의 이미지를 두 번 스와이프하는 실제 앱 시연',description:'프로암 탭에서 첫 이벤트의 상세 안내를 읽고 공식 스폰서로 이동합니다. 상단 갤러리를 두 번 스와이프하며 화면 간 탐색 흐름을 보여줍니다.'},
+  {category:'CLUB · DWELL REWARD',title:'읽는 시간에서 체류 보상까지',image:'assets/club-full-poster.webp',video:'assets/club-full.mp4',alt:'클럽 피드를 천천히 스크롤하며 15초 카운트다운과 1공 보상 완료를 보여주는 실제 앱 시연',description:'클럽 피드를 천천히 읽으며 스크롤합니다. 15초 카운트다운 이후 보상 확인과 “1공을 받았어요” 안내까지 배속 없이 담았습니다.'}
 ];
 const grid = document.querySelector('#demo-grid');
 for (const [index, demo] of demonstrations.entries()) {
@@ -63,18 +63,30 @@ for (const [index, demo] of demonstrations.entries()) {
   grid.append(card);
 }
 
+const splash = document.querySelector('#splash-video');
+const splashToggle = document.querySelector('.hero-media-control');
+splashToggle.addEventListener('click', () => {
+  splash.dataset.userPaused = splash.paused ? 'false' : 'true';
+  if (splash.paused) splash.play().catch(() => {}); else splash.pause();
+});
+splash.addEventListener('play', () => { splashToggle.textContent = '시연 일시정지 Ⅱ'; });
+splash.addEventListener('pause', () => { splashToggle.textContent = '시연 재생 ▶'; });
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mediaObserver = new IntersectionObserver(entries => {
   for (const entry of entries) {
     const video = entry.target;
-    if (entry.isIntersecting && !reduceMotion.matches && video.dataset.userPaused !== 'true') {
+    video.dataset.inView = entry.intersectionRatio >= 0.6 ? 'true' : 'false';
+    if (entry.intersectionRatio >= 0.6 && !document.hidden && !reduceMotion.matches && video.dataset.userPaused !== 'true') {
       video.play().catch(() => {});
     } else video.pause();
   }
 }, { threshold: 0.6 });
 document.querySelectorAll('video').forEach(video => mediaObserver.observe(video));
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) document.querySelectorAll('video').forEach(video => video.pause());
+  document.querySelectorAll('video').forEach(video => {
+    if (document.hidden) video.pause();
+    else if (video.dataset.inView === 'true' && video.dataset.userPaused !== 'true' && !reduceMotion.matches) video.play().catch(() => {});
+  });
 });
 reduceMotion.addEventListener('change', event => {
   if (event.matches) document.querySelectorAll('video').forEach(video => video.pause());

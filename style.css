@@ -10,3 +10,7 @@
 
 /* Full app frames and accessible playback actions */
 .demo-stage{height:auto;padding:28px 20px 62px}.demo-stage .phone{aspect-ratio:540/1136;width:225px}.media-expand{position:absolute;bottom:17px;left:17px;font-size:11px;text-decoration:underline;text-underline-offset:3px}.media-controls{bottom:12px}.capture-note{font-size:11px;line-height:1.8;color:var(--muted);margin-top:25px}.demo-stage .phone{box-shadow:0 12px 22px #112f2420}@media(max-width:760px){.demo-stage{height:auto}.capture-note{font-size:12px}}
+
+/* Preserve the complete device screen, including its safe areas. */
+.phone,.demo-stage .phone{aspect-ratio:9/20}.phone img,.phone video{object-fit:contain}.hero-media-control{z-index:4;right:18px;bottom:18px}.hero-stage .stage-index{bottom:65px}
+.phone,.demo-stage .phone{aspect-ratio:auto}.phone img,.phone video{width:100%;height:auto;aspect-ratio:9/20;object-fit:contain}
