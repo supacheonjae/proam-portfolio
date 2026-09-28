@@ -14,3 +14,6 @@
 /* Preserve the complete device screen, including its safe areas. */
 .phone,.demo-stage .phone{aspect-ratio:9/20}.phone img,.phone video{object-fit:contain}.hero-media-control{z-index:4;right:18px;bottom:18px}.hero-stage .stage-index{bottom:65px}
 .phone,.demo-stage .phone{aspect-ratio:auto}.phone img,.phone video{width:100%;height:auto;aspect-ratio:9/20;object-fit:contain}
+
+/* Match the full iPhone recording without cropping its safe areas. */
+.phone img{aspect-ratio:1284/2778}.phone video{aspect-ratio:642/1390}.hero-stage .stage-index{bottom:23px}

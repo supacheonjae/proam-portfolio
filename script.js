@@ -1,8 +1,8 @@
 /* 실제 캡처 파일과 설명은 이 배열에서 관리합니다. */
 const demonstrations = [
-  {category:'HOME · INTERACTION',title:'홈 탐색에서 좋아요까지',image:'assets/home-full-poster.webp',video:'assets/home-full.mp4',alt:'홈을 스크롤하여 지금 핫한 인기 게시물의 첫 피드에 좋아요를 누르는 실제 앱 시연',description:'홈의 이벤트·레슨·소식을 지나 인기 게시물로 이동합니다. 첫 피드의 좋아요를 누르면 하트와 숫자가 함께 바뀝니다.'},
-  {category:'PROAM · EXPLORATION',title:'이벤트에서 스폰서 갤러리로',image:'assets/proam-full-poster.webp',video:'assets/proam-full.mp4',alt:'프로암 탭의 첫 이벤트에 진입하고 공식 스폰서 갤러리의 이미지를 두 번 스와이프하는 실제 앱 시연',description:'프로암 탭에서 첫 이벤트의 상세 안내를 읽고 공식 스폰서로 이동합니다. 상단 갤러리를 두 번 스와이프하며 화면 간 탐색 흐름을 보여줍니다.'},
-  {category:'CLUB · DWELL REWARD',title:'읽는 시간에서 체류 보상까지',image:'assets/club-full-poster.webp',video:'assets/club-full.mp4',alt:'클럽 피드를 천천히 스크롤하며 15초 카운트다운과 1공 보상 완료를 보여주는 실제 앱 시연',description:'클럽 피드를 천천히 읽으며 스크롤합니다. 15초 카운트다운 이후 보상 확인과 “1공을 받았어요” 안내까지 배속 없이 담았습니다.'}
+  {category:'HOME · INTERACTION',title:'홈 탐색에서 좋아요까지',image:'assets/home-device-poster.webp',video:'assets/home-device.mp4',alt:'홈을 스크롤하여 지금 핫한 인기 게시물의 첫 피드에 좋아요를 누르는 실제 앱 시연',description:'홈의 이벤트·레슨·소식을 지나 인기 게시물로 이동합니다. 첫 피드의 좋아요를 누르면 하트와 숫자가 함께 바뀝니다.'},
+  {category:'PROAM · EXPLORATION',title:'이벤트에서 스폰서 갤러리로',image:'assets/proam-device-poster.webp',video:'assets/proam-device.mp4',alt:'프로암 탭의 첫 이벤트에 진입하고 공식 스폰서 갤러리의 이미지를 두 번 스와이프하는 실제 앱 시연',description:'프로암 탭에서 첫 이벤트의 상세 안내를 읽고 공식 스폰서로 이동합니다. 상단 갤러리를 두 번 스와이프하며 화면 간 탐색 흐름을 보여줍니다.'},
+  {category:'CLUB · DWELL REWARD',title:'읽는 시간에서 체류 보상까지',image:'assets/club-device-poster.webp',video:'assets/club-device.mp4',alt:'클럽 피드를 천천히 스크롤하며 15초 카운트다운과 1공 보상 완료를 보여주는 실제 앱 시연',description:'클럽 피드를 천천히 읽으며 스크롤합니다. 15초 카운트다운 이후 보상 확인과 “1공을 받았어요” 안내까지 배속 없이 담았습니다.'}
 ];
 const grid = document.querySelector('#demo-grid');
 for (const [index, demo] of demonstrations.entries()) {
@@ -63,14 +63,6 @@ for (const [index, demo] of demonstrations.entries()) {
   grid.append(card);
 }
 
-const splash = document.querySelector('#splash-video');
-const splashToggle = document.querySelector('.hero-media-control');
-splashToggle.addEventListener('click', () => {
-  splash.dataset.userPaused = splash.paused ? 'false' : 'true';
-  if (splash.paused) splash.play().catch(() => {}); else splash.pause();
-});
-splash.addEventListener('play', () => { splashToggle.textContent = '시연 일시정지 Ⅱ'; });
-splash.addEventListener('pause', () => { splashToggle.textContent = '시연 재생 ▶'; });
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mediaObserver = new IntersectionObserver(entries => {
   for (const entry of entries) {
