@@ -63,3 +63,5 @@ Settings → Pages → Deploy from a branch → `main` / `(root)`를 사용합�
 미디어 처리의 회사 규모·서버 부담 관점, Blob 직접 업로드 흐름, Riverpod 상태 관리와 Provider 객체 연결 방식을 보강했습니다. revision 표현은 세션 변경 번호와 요청 작업 번호로 풀어 썼습니다.
 
 상단 대표 이미지는 `assets/splash-title-clean.png`를 사용합니다. image_gen 내장 도구에 “좌측 상단 녹화 표시만 제거하고 나머지 화면은 보존”하도록 요청한 뒤, 생성 결과의 해당 작은 영역만 원본에 합성하여 로고·인물·앱 화면의 변경을 방지했습니다. 원본 WebP와 시연 영상은 보존했습니다.
+
+상단 브랜드 아이콘과 favicon은 동일한 `assets/proam-app-icon.png`를 참조합니다. 사용자가 제공한 `문서/프로암/images/ic_launcher.png` 원본을 사용합니다.
