@@ -36,7 +36,7 @@
       <div class="hero-stage" aria-label="모두의프로암 앱 미리보기">
         <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="stage-grid"></div>
         <span class="stage-note">ONE APP.<br>CONNECTED EXPERIENCES.</span>
-        <div class="phone hero-phone" id="hero-media"><img src="assets/splash-title.webp" width="642" height="1389" alt="모두의프로암 실제 iPhone 앱 스플래시. 골퍼들의 놀이터! 모두의 프로암 타이틀이 완성된 화면." fetchpriority="high"></div>
+        <div class="phone hero-phone" id="hero-media"><img src="assets/splash-title-clean.png" width="642" height="1389" alt="모두의프로암 실제 iPhone 앱 스플래시. 골퍼들의 놀이터! 모두의 프로암 타이틀이 완성된 화면." fetchpriority="high"></div>
         <div class="floating-label label-top"><span class="mini-icon">↗</span><div>Flutter rebuild<small>구조부터 새롭게</small></div></div>
         <div class="floating-label label-bottom"><span class="mini-icon">✓</span><div>From build to release<small>구현 · 심사 · 운영</small></div></div>
         <span class="stage-index">01 — MOBILE EXPERIENCE</span>
@@ -63,18 +63,18 @@
             <div class="case-top"><span class="case-number">01</span><span class="tag">ARCHITECTURE</span></div>
             <h3>기능은 독립적으로,<br>경계는 일관되게.</h3>
             <p class="case-lead">화면에서 API와 저장소를 직접 다루지 않도록, 기능별 책임을 네 개의 계층으로 분리했습니다.</p>
-            <div class="decision-pair"><div><h4>해결할 문제</h4><p>UI, 데이터 접근, 상태 변경이 섞이면 기능 수정이 다른 화면으로 번지기 쉽습니다. 앱 전반에 공통으로 적용할 의존성 방향이 필요했습니다.</p></div><div><h4>선택한 방법</h4><p>기능 단위로 코드를 묶고 내부를 presentation / application / domain / data로 분리했습니다. Riverpod은 의존성 주입과 상태 연결의 진입점으로 사용했습니다.</p></div></div>
-            <figure class="architecture-diagram"><figcaption>화면에서 데이터까지의 실행 흐름</figcaption><div class="layer"><span>01</span><div><b>Presentation</b><small>Screen · Widget · Route</small></div><p>렌더링과 사용자 입력</p></div><div class="flow-arrow">↓</div><div class="layer"><span>02</span><div><b>Application</b><small>ViewModel · UseCase · Store</small></div><p>화면 상태와 실행 흐름</p></div><div class="flow-arrow">↓</div><div class="layer"><span>03</span><div><b>Repository</b><small>Domain 계약 / Data 구현</small></div><p>앱이 사용하는 데이터로 변환</p></div><div class="flow-arrow">↓</div><div class="layer"><span>04</span><div><b>Data source</b><small>GraphQL · Local storage</small></div><p>외부 데이터 접근</p></div><p class="diagram-note">Riverpod으로 의존성 연결 · GraphQL 생성 타입은 데이터 경계 안에서 처리</p></figure>
+            <div class="decision-pair"><div><h4>해결할 문제</h4><p>UI, 데이터 접근, 상태 변경이 섞이면 기능 수정이 다른 화면으로 번지기 쉽습니다. 앱 전반에 공통으로 적용할 의존성 방향이 필요했습니다.</p></div><div><h4>선택한 방법</h4><p>기능 단위로 코드를 묶고 내부를 presentation / application / domain / data로 분리했습니다. Riverpod으로 화면 상태와 공유 상태를 관리했습니다. Repository와 DataSource는 Provider에서 생성·연결해 화면이 구현체를 직접 만들지 않도록 했습니다.</p></div></div>
+            <figure class="architecture-diagram"><figcaption>화면에서 데이터까지의 실행 흐름</figcaption><div class="layer"><span>01</span><div><b>Presentation</b><small>Screen · Widget · Route</small></div><p>렌더링과 사용자 입력</p></div><div class="flow-arrow">↓</div><div class="layer"><span>02</span><div><b>Application</b><small>ViewModel · UseCase · Store</small></div><p>화면 상태와 실행 흐름</p></div><div class="flow-arrow">↓</div><div class="layer"><span>03</span><div><b>Repository</b><small>Domain 계약 / Data 구현</small></div><p>앱이 사용하는 데이터로 변환</p></div><div class="flow-arrow">↓</div><div class="layer"><span>04</span><div><b>Data source</b><small>GraphQL · Local storage</small></div><p>외부 데이터 접근</p></div><p class="diagram-note">Riverpod으로 상태 관리 · Provider로 객체 연결 · GraphQL 생성 타입은 데이터 경계 안에서 처리</p></figure>
             <div class="outcome"><span>구현 결과</span><p>화면은 앱 전용 상태와 도메인 데이터를 사용합니다. API 응답 매핑과 플랫폼 연동의 변경 지점을 별도로 두고, 공통 라우팅·딥링크·오류 처리 기반을 함께 구성했습니다.</p></div>
-            <details><summary>설계의 경계와 선택 기준 <span>＋</span></summary><p>모든 변환에 별도 UseCase를 만드는 대신, 단순한 화면 전용 매핑은 ViewModel 또는 State에 둡니다. 외부 API·플랫폼 경계는 교체 가능하게 구성하고, 화면을 구성할 때 실제 Repository를 테스트용 구현으로 바꿀 수 있도록 역할을 나눴습니다.</p></details>
+            <details><summary>설계의 경계와 선택 기준 <span>＋</span></summary><p>모든 변환에 별도 UseCase를 만드는 대신, 단순한 화면 전용 매핑은 ViewModel 또는 State에 둡니다. 의존성 주입은 Provider가 DataSource를 가져와 Repository 생성자에 전달하는 방식으로 구성했습니다. 상태 변화는 ref.watch로 구독하고, 동작 실행에 필요한 객체는 ref.read로 가져옵니다. 개발 시에는 Provider override로 Repository를 테스트용 구현으로 교체할 수 있습니다.</p></details>
           </article>
 
           <article class="case" id="consistency">
             <div class="case-top"><span class="case-number">02</span><span class="tag">STATE CONSISTENCY</span></div>
             <h3>어느 화면에서 보더라도,<br>같은 상태를 보여주도록.</h3>
             <p class="case-lead">빠른 UI 피드백과 서버가 확정한 데이터를 구분하고, 변경 사항을 화면 사이에 전파했습니다.</p>
-            <div class="decision-pair"><div><h4>해결할 문제</h4><p>목록과 상세의 좋아요 수, 여러 화면의 보유 재화, 로그인 전후의 데이터가 서로 어긋날 수 있습니다. 각각의 화면에서 값을 수정하는 것만으로는 일관성을 유지하기 어렵습니다.</p></div><div><h4>선택한 방법</h4><p>피드 변경은 공유 Store의 패치로 전달합니다. 보유 재화는 서버를 다시 조회해 확정하고, 로그인 세션 변경 시 revision을 갱신해 관련 상태를 초기화합니다.</p></div></div>
-            <figure class="sync-diagram"><figcaption>보유 재화 갱신 흐름</figcaption><div class="sync-flow"><span>보상·사용 처리</span><b>→</b><span>서버 잔액 조회</span><b>→</b><span class="highlight">공유 Store</span></div><div class="sync-branches"><span>홈</span><span>보상 화면</span><span>더보기</span></div><p class="diagram-note">동시 조회는 진행 중인 작업을 공유하고, 이전 요청의 늦은 응답은 revision으로 구분합니다.</p></figure>
+            <div class="decision-pair"><div><h4>해결할 문제</h4><p>목록과 상세의 좋아요 수, 여러 화면의 보유 재화, 로그인 전후의 데이터가 서로 어긋날 수 있습니다. 각각의 화면에서 값을 수정하는 것만으로는 일관성을 유지하기 어렵습니다.</p></div><div><h4>선택한 방법</h4><p>피드 변경은 공유 Store의 패치로 전달합니다. 보유 재화는 서버를 다시 조회해 확정하고, 로그인·로그아웃 시 세션 변경을 알리는 번호를 갱신해 관련 화면의 상태를 초기화합니다.</p></div></div>
+            <figure class="sync-diagram"><figcaption>보유 재화 갱신 흐름</figcaption><div class="sync-flow"><span>보상·사용 처리</span><b>→</b><span>서버 잔액 조회</span><b>→</b><span class="highlight">공유 Store</span></div><div class="sync-branches"><span>홈</span><span>보상 화면</span><span>더보기</span></div><p class="diagram-note">동시 조회는 진행 중인 작업을 공유하고, 요청 시작 시점의 작업 번호를 비교해 오래된 응답이 최신 잔액을 덮어쓰지 않도록 합니다.</p></figure>
             <div class="outcome"><span>구현 결과</span><p>재화 값을 화면마다 임의로 증감하지 않고 서버 응답으로 갱신합니다. 피드의 좋아요·댓글 수·본문 변경은 공유 상태를 통해 연결된 화면에 반영합니다.</p></div>
             <details><summary>연속 탭과 실패는 어떻게 처리했나요? <span>＋</span></summary><p>좋아요는 먼저 화면에 반영한 뒤 서버와 동기화합니다. 요청 중 추가 탭이 들어오면 최신 사용자의 의도를 확인해 후속 요청을 이어가고, 서버 응답의 수치와 맞춥니다. 실패 시에는 마지막으로 확정된 상태로 복구합니다. 재화 지급·업로드처럼 중복 부작용이 있는 작업과는 다른 정책입니다.</p></details>
           </article>
@@ -82,11 +82,11 @@
           <article class="case" id="media">
             <div class="case-top"><span class="case-number">03</span><span class="tag">MEDIA PIPELINE</span></div>
             <h3>원본 그대로 보내기 전에,<br>표시 목적에 맞게 준비하기.</h3>
-            <p class="case-lead">이미지와 동영상을 앱에서 전처리하고, 업로드 단계에는 준비된 파일을 전달하도록 구성했습니다.</p>
-            <div class="decision-pair"><div><h4>해결할 문제</h4><p>사용자가 고른 미디어는 크기·비율·회전 정보·형식이 제각각입니다. 작은 목록 이미지부터 상세 보기까지 동일한 원본에 의존하지 않도록 표시 용도를 구분했습니다.</p></div><div><h4>선택한 방법</h4><p>이미지는 thumbnail·preview·full WebP variant로 준비합니다. 동영상은 메타데이터와 길이를 확인한 후 인코딩하고, 진행 상태를 업로드 흐름에 연결합니다.</p></div></div>
-            <figure class="media-diagram"><figcaption>미디어 준비 → 업로드</figcaption><div class="pipeline-start">갤러리에서 미디어 선택</div><div class="pipeline-columns"><div><span class="pipeline-label">IMAGE</span><h4>WebP variants</h4><div class="variant-bars"><div style="--w:35%">360 <span>thumbnail</span></div><div style="--w:75%">1080 <span>preview</span></div><div style="--w:100%">1440 <span>full</span></div></div><small>목표 너비(px) · 표시 목적에 따라 구분</small></div><div><span class="pipeline-label">VIDEO</span><h4>표준화된 MP4</h4><ul><li>길이·회전·해상도 확인</li><li>H.264 · AAC 인코딩</li><li>짧은 변 최대 720px · 30fps</li><li>인코딩 진행률 전달</li></ul></div></div><div class="pipeline-end">준비된 파일 → 업로드 → 피드 표시</div></figure>
+            <p class="case-lead">회사 규모와 서버 운영 부담을 고려해 사진·영상 업로드 구조를 사전에 연구하고, 앱에서 미디어 준비부터 원격 스토리지 업로드까지 수행하도록 구성했습니다.</p>
+            <div class="decision-pair"><div><h4>해결할 문제</h4><p>사진·영상 업로드 기능에는 파일 전송뿐 아니라 크기별 이미지 생성과 동영상 인코딩이 필요합니다. 이 처리를 서버에 집중시키는 부담을 줄이면서, 목록·상세 화면에 맞는 파일을 제공하고자 했습니다.</p></div><div><h4>선택한 방법</h4><p>앱에서 용도별 WebP 이미지 3종을 생성하고 동영상을 인코딩합니다. 서버에서 발급받은 서명 기반 업로드 정보로 Blob 스토리지에 직접 전송한 뒤, 업로드 완료와 파일 정보를 서버에 전달합니다.</p></div></div>
+            <figure class="media-diagram"><figcaption>미디어 준비 → 업로드</figcaption><div class="pipeline-start">갤러리에서 미디어 선택</div><div class="pipeline-columns"><div><span class="pipeline-label">IMAGE</span><h4>WebP variants</h4><div class="variant-bars"><div style="--w:35%">360 <span>thumbnail</span></div><div style="--w:75%">1080 <span>preview</span></div><div style="--w:100%">1440 <span>full</span></div></div><small>목표 너비(px) · 표시 목적에 따라 구분</small></div><div><span class="pipeline-label">VIDEO</span><h4>표준화된 MP4</h4><ul><li>길이·회전·해상도 확인</li><li>H.264 · AAC 인코딩</li><li>짧은 변 최대 720px · 30fps</li><li>인코딩 진행률 전달</li></ul></div></div><div class="pipeline-end">앱 전처리 → Blob 직접 업로드 → 서버에 완료 전달</div></figure>
             <div class="outcome"><span>구현 결과</span><p>미디어 준비와 업로드의 책임을 나눴습니다. GIF는 썸네일에 첫 프레임을 사용하고, preview·full에는 애니메이션을 유지하는 정책으로 처리합니다.</p></div>
-            <details><summary>품질과 처리 비용의 균형 <span>＋</span></summary><p>앱 내부 전처리는 단말의 처리 시간과 임시 저장 공간을 사용합니다. 대신 업로드 전에 크기와 형식을 통제할 수 있습니다. 원본의 방향과 비율을 처리하고 동영상 길이를 제한하며, 진행 상태를 전달하는 흐름까지 함께 구현했습니다.</p></details>
+            <details><summary>품질과 처리 비용의 균형 <span>＋</span></summary><p>서버의 미디어 변환과 파일 중계 부담을 줄이는 대신, 단말의 처리 시간·배터리·임시 저장 공간을 사용합니다. 이를 고려해 이미지 크기와 동영상 길이·해상도를 제한하고 인코딩 진행 상태를 전달했습니다. 단말 성능에 따라 처리 시간이 달라지는 점도 이 선택의 대가입니다.</p></details>
           </article>
         </div>
       </div>
