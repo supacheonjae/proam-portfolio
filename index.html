@@ -8,6 +8,9 @@
   <meta property="og:title" content="모두의프로암 V2 — 모바일 리뉴얼 케이스 스터디">
   <meta property="og:description" content="Flutter 모바일 단독 개발 · 약 2개월 리뉴얼 · Android & iOS 출시 및 운영">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:url" content="https://supacheonjae.github.io/proam-portfolio/">
+  <link rel="canonical" href="https://supacheonjae.github.io/proam-portfolio/">
   <title>모두의프로암 V2 | 모바일 리뉴얼 포트폴리오</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
@@ -26,14 +29,14 @@
         <p class="eyebrow"><span class="status-dot"></span> MOBILE ENGINEERING · GTS</p>
         <h1>골프의 경험을,<br>앱의 완성도로.</h1>
         <p class="hero-project">모두의프로암 V2 리뉴얼</p>
-        <p class="hero-description">Flutter 기반 모바일 앱을 단독으로 리뉴얼했습니다.<br class="desktop-only">화면의 구현에서 데이터의 일관성, 양 플랫폼 출시까지.<br class="desktop-only">사용자의 흐름을 끝까지 연결한 개발 기록입니다.</p>
+        <p class="hero-description">Flutter 기반 모바일 앱을 단독으로 리뉴얼했습니다. <br class="desktop-only">화면의 구현에서 데이터의 일관성, 양 플랫폼 출시까지. <br class="desktop-only">사용자의 흐름을 끝까지 연결한 개발 기록입니다.</p>
         <div class="hero-actions"><a class="button primary" href="#experience">앱 살펴보기 <span>↗</span></a><a class="text-link" href="#engineering">기술적 의사결정 읽기 ↓</a></div>
         <dl class="hero-facts"><div><dt>개발 범위</dt><dd>모바일 단독</dd></div><div><dt>핵심 리뉴얼</dt><dd>약 2개월</dd></div><div><dt>출시 플랫폼</dt><dd>iOS · Android</dd></div></dl>
       </div>
       <div class="hero-stage" aria-label="모두의프로암 앱 미리보기">
         <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="stage-grid"></div>
         <span class="stage-note">ONE APP.<br>CONNECTED EXPERIENCES.</span>
-        <div class="phone hero-phone" id="hero-media"><div class="media-pending"><span>모두의프로암</span><strong>골프를 더 가깝게.</strong><p>앱 화면 준비 중</p></div></div>
+        <div class="phone hero-phone" id="hero-media"><img src="assets/home.webp" width="660" height="1338" alt="모두의프로암 Prod 앱 홈. 프로암 이벤트 배너와 주요 이벤트를 보여주는 화면." fetchpriority="high"></div>
         <div class="floating-label label-top"><span class="mini-icon">↗</span><div>Flutter rebuild<small>구조부터 새롭게</small></div></div>
         <div class="floating-label label-bottom"><span class="mini-icon">✓</span><div>From build to release<small>구현 · 심사 · 운영</small></div></div>
         <span class="stage-index">01 — MOBILE EXPERIENCE</span>
@@ -47,8 +50,8 @@
     </section>
 
     <section class="experience section-wrap" id="experience">
-      <div class="section-heading"><div><p class="eyebrow">02 / IN THE APP</p><h2>하나의 앱 안에서<br>이어지는 골프 경험.</h2></div><p>실제 앱 화면으로 살펴보는 주요 서비스.<br>각 화면 아래에서 구현의 초점을 확인할 수 있습니다.</p></div>
-      <div class="demo-grid" id="demo-grid"></div>
+      <div class="section-heading"><div><p class="eyebrow">02 / IN THE APP</p><h2>하나의 앱 안에서<br>이어지는 골프 경험.</h2></div><p>실제 서비스(Prod)의 Android 앱 시연입니다.<br>첫 화면은 iOS, 아래 영상은 Android에서 촬영했습니다.</p></div>
+      <div class="demo-grid" id="demo-grid"></div><noscript><p>앱 시연: <a href="assets/home-demo.mp4">홈 탐색</a> · <a href="assets/proam-demo.mp4">이벤트 상세</a> · <a href="assets/gallery-demo.mp4">이미지 탐색</a></p></noscript><p class="capture-note">촬영: 2026.09 · 시스템 상태 표시줄 제외 · 비로그인 상태의 조회 흐름 · 화면의 이벤트 정보는 촬영 당시 기준입니다.</p>
     </section>
 
     <section class="engineering" id="engineering">
@@ -83,7 +86,7 @@
             <div class="decision-pair"><div><h4>해결할 문제</h4><p>사용자가 고른 미디어는 크기·비율·회전 정보·형식이 제각각입니다. 작은 목록 이미지부터 상세 보기까지 동일한 원본에 의존하지 않도록 표시 용도를 구분했습니다.</p></div><div><h4>선택한 방법</h4><p>이미지는 thumbnail·preview·full WebP variant로 준비합니다. 동영상은 메타데이터와 길이를 확인한 후 인코딩하고, 진행 상태를 업로드 흐름에 연결합니다.</p></div></div>
             <figure class="media-diagram"><figcaption>미디어 준비 → 업로드</figcaption><div class="pipeline-start">갤러리에서 미디어 선택</div><div class="pipeline-columns"><div><span class="pipeline-label">IMAGE</span><h4>WebP variants</h4><div class="variant-bars"><div style="--w:35%">360 <span>thumbnail</span></div><div style="--w:75%">1080 <span>preview</span></div><div style="--w:100%">1440 <span>full</span></div></div><small>목표 너비(px) · 표시 목적에 따라 구분</small></div><div><span class="pipeline-label">VIDEO</span><h4>표준화된 MP4</h4><ul><li>길이·회전·해상도 확인</li><li>H.264 · AAC 인코딩</li><li>짧은 변 최대 720px · 30fps</li><li>인코딩 진행률 전달</li></ul></div></div><div class="pipeline-end">준비된 파일 → 업로드 → 피드 표시</div></figure>
             <div class="outcome"><span>구현 결과</span><p>미디어 준비와 업로드의 책임을 나눴습니다. GIF는 썸네일에 첫 프레임을 사용하고, preview·full에는 애니메이션을 유지하는 정책으로 처리합니다.</p></div>
-            <details><summary>품질과 처리 비용의 균형 <span>＋</span></summary><p>앱 내부 전처리는 단말의 처리 시간과 임시 저장 공간을 사용합니다. 대신 업로드 전에 크기와 형식을 통제할 수 있습니다. 원본의 방향과 비율을 처리하고 동영상 길이를 제한하며, 진행 상태를 전달하는 흐름까지 함께 구현했습니다. 측정하지 않은 용량 절감률이나 속도 개선율은 제시하지 않았습니다.</p></details>
+            <details><summary>품질과 처리 비용의 균형 <span>＋</span></summary><p>앱 내부 전처리는 단말의 처리 시간과 임시 저장 공간을 사용합니다. 대신 업로드 전에 크기와 형식을 통제할 수 있습니다. 원본의 방향과 비율을 처리하고 동영상 길이를 제한하며, 진행 상태를 전달하는 흐름까지 함께 구현했습니다.</p></details>
           </article>
         </div>
       </div>
@@ -91,7 +94,7 @@
 
     <section class="section-wrap delivery" id="delivery"><div class="section-heading"><div><p class="eyebrow">04 / DELIVERY & OPERATION</p><h2>개발의 마지막을,<br>출시 이후까지.</h2></div><p>리뉴얼 구현과 함께 빌드·심사·릴리즈를 담당하고,<br>서비스를 운영하며 공통 동작을 다듬었습니다.</p></div><div class="delivery-grid"><article><span>↗</span><h3>양 플랫폼 출시</h3><p>Android·iOS 권한 및 빌드 설정, App Store·Play Store 심사 대응과 릴리즈 관리.</p></article><article><span>⌁</span><h3>끊김에 대응하는 흐름</h3><p>전역 로딩·오류·재시도와 점검·업데이트·토큰 오류 등 서비스 상태별 대응.</p></article><article><span>◎</span><h3>서비스와의 연결</h3><p>웹·앱 브릿지, 딥링크, 위치·로그인 인터페이스와 GA4 이벤트·Firebase 연동.</p></article></div></section>
 
-    <section class="closing section-wrap"><p class="eyebrow">WHAT THIS PROJECT SHOWS</p><h2>화면을 만드는 개발자에서,<br>제품의 흐름을 책임지는 개발자로.</h2><p>iOS 네이티브 개발 경험을 바탕으로 Flutter 앱의 구조와 기능을 구현하고,<br class="desktop-only">Android·iOS 출시와 운영까지 연결했습니다.</p><div class="closing-tags"><span>모바일 아키텍처</span><span>크로스 플랫폼</span><span>데이터 일관성</span><span>출시와 운영</span></div><a class="button primary" href="#top">처음으로 돌아가기 ↑</a></section>
+    <section class="closing section-wrap"><p class="eyebrow">WHAT THIS PROJECT SHOWS</p><h2>화면을 만드는 개발자에서,<br>제품의 흐름을 책임지는 개발자로.</h2><p>iOS 네이티브 개발 경험을 바탕으로 Flutter 앱의 구조와 기능을 구현하고, <br class="desktop-only">Android·iOS 출시와 운영까지 연결했습니다.</p><div class="closing-tags"><span>모바일 아키텍처</span><span>크로스 플랫폼</span><span>데이터 일관성</span><span>출시와 운영</span></div><a class="button primary" href="#top">처음으로 돌아가기 ↑</a></section>
   </main>
   <footer class="footer section-wrap"><span>모두의프로암 V2 · Mobile engineering case study</span><p>프로젝트 설명 및 개발 기여 포트폴리오입니다.<br>앱의 상표와 화면에 대한 권리는 해당 권리자에게 있습니다.</p><a href="https://github.com/supacheonjae" target="_blank" rel="noopener noreferrer">supacheonjae ↗</a></footer>
 </body>

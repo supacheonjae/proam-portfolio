@@ -1,5 +1,9 @@
 /* 실제 캡처 파일과 설명은 이 배열에서 관리합니다. */
-const demonstrations = [];
+const demonstrations = [
+  {category:'HOME · DISCOVERY',title:'서비스를 한눈에, 홈 탐색',image:'assets/home-poster.webp',video:'assets/home-demo.mp4',alt:'모두의프로암 홈에서 이벤트, 레슨, 소식 영역으로 스크롤하는 실제 앱 시연',description:'이벤트·레슨·소식을 하나의 탐색 흐름으로 구성했습니다. 공통 내비게이션과 목록 화면을 연결한 실제 홈 화면입니다.'},
+  {category:'PROAM · EVENT',title:'이벤트의 맥락을 담은 상세 화면',image:'assets/proam-poster.webp',video:'assets/proam-demo.mp4',alt:'테일러메이드 프로암 이벤트의 대표 이미지에서 행사 안내로 스크롤하는 실제 앱 시연',description:'대표 이미지부터 응원 상태, 일정과 참가 안내까지 연결했습니다. 로그인 여부에 따른 행동 버튼과 서버 상태를 화면에 반영합니다.'},
+  {category:'CLUB · MEDIA',title:'피드에서 이어지는 이미지 탐색',image:'assets/gallery-poster.webp',video:'assets/gallery-demo.mp4',alt:'공식 계정 피드에 첨부된 이미지를 썸네일로 전환하는 실제 앱 시연',description:'피드의 첨부 이미지를 전체 화면에서 살펴보고 썸네일로 전환합니다. 이미지 준비·업로드 구조는 아래 기술 사례에서 설명합니다.'}
+];
 const grid = document.querySelector('#demo-grid');
 for (const [index, demo] of demonstrations.entries()) {
   const card = document.createElement('article');
@@ -29,6 +33,14 @@ for (const [index, demo] of demonstrations.entries()) {
     video.addEventListener('play', () => { toggle.textContent = '시연 일시정지 Ⅱ'; });
     video.addEventListener('pause', () => { toggle.textContent = '시연 재생 ▶'; });
     stage.append(toggle);
+    const expand = document.createElement('a');
+    expand.className = 'media-expand';
+    expand.href = demo.video;
+    expand.target = '_blank';
+    expand.rel = 'noopener noreferrer';
+    expand.textContent = '크게 보기 ↗';
+    expand.setAttribute('aria-label', `${demo.title} 영상 크게 보기`);
+    stage.append(expand);
   } else {
     const image = document.createElement('img');
     image.src = demo.image;
