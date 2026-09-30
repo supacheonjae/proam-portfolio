@@ -1,8 +1,8 @@
 /* 실제 캡처 파일과 설명은 이 배열에서 관리합니다. */
 const demonstrations = [
-  {duration:'약 13초', related:'#consistency', relatedLabel:'좋아요 상태 동기화 설계', category:'HOME · INTERACTION',title:'홈 탐색에서 좋아요까지',image:'assets/home-device-poster.webp',video:'assets/home-device.mp4',alt:'홈을 스크롤하여 지금 핫한 인기 게시물의 첫 피드에 좋아요를 누르는 실제 앱 시연',description:'홈의 이벤트·레슨·소식을 지나 인기 게시물로 이동합니다. 첫 피드의 좋아요를 누르면 하트와 숫자가 함께 바뀝니다.'},
-  {duration:'약 15초', related:'#architecture', relatedLabel:'화면과 기능을 나눈 구조', category:'PROAM · EXPLORATION',title:'이벤트에서 스폰서 갤러리로',image:'assets/proam-device-poster.webp',video:'assets/proam-device.mp4',alt:'프로암 탭의 첫 이벤트에 진입하고 공식 스폰서 갤러리의 이미지를 두 번 스와이프하는 실제 앱 시연',description:'프로암 탭에서 첫 이벤트의 상세 안내를 읽고 공식 스폰서로 이동합니다. 상단 갤러리를 두 번 스와이프하며 화면 간 탐색 흐름을 보여줍니다.'},
-  {duration:'약 23초', related:'#consistency', relatedLabel:'보상 후 잔액 갱신 설계', category:'CLUB · DWELL REWARD',title:'읽는 시간에서 체류 보상까지',image:'assets/club-device-poster.webp',video:'assets/club-device.mp4',alt:'클럽 피드를 천천히 스크롤하며 15초 카운트다운과 1공 보상 완료를 보여주는 실제 앱 시연',description:'클럽 피드를 천천히 읽으며 스크롤합니다. 15초 카운트다운 이후 보상 확인과 “1공을 받았어요” 안내까지 배속 없이 담았습니다.'}
+  {related:'#consistency', relatedLabel:'좋아요 상태 동기화 설계', category:'HOME · INTERACTION',title:'홈 탐색에서 좋아요까지',image:'assets/home-device-poster.webp',video:'assets/home-device.mp4',alt:'홈을 스크롤하여 지금 핫한 인기 게시물의 첫 피드에 좋아요를 누르는 실제 앱 시연',description:'홈의 이벤트·레슨·소식을 지나 인기 게시물로 이동합니다. 첫 피드의 좋아요를 누르면 하트와 숫자가 함께 바뀝니다.'},
+  {related:'#architecture', relatedLabel:'화면과 기능을 나눈 구조', category:'PROAM · EXPLORATION',title:'이벤트에서 스폰서 갤러리로',image:'assets/proam-device-poster.webp',video:'assets/proam-device.mp4',alt:'프로암 탭의 첫 이벤트에 진입하고 공식 스폰서 갤러리의 이미지를 두 번 스와이프하는 실제 앱 시연',description:'프로암 탭에서 첫 이벤트의 상세 안내를 읽고 공식 스폰서로 이동합니다. 상단 갤러리를 두 번 스와이프하며 화면 간 탐색 흐름을 보여줍니다.'},
+  {related:'#consistency', relatedLabel:'보상 후 잔액 갱신 설계', category:'CLUB · DWELL REWARD',title:'읽는 시간에서 체류 보상까지',image:'assets/club-device-poster.webp',video:'assets/club-device.mp4',alt:'클럽 피드를 천천히 스크롤하며 15초 카운트다운과 1공 보상 완료를 보여주는 실제 앱 시연',description:'클럽 피드를 천천히 읽으며 스크롤합니다. 15초 카운트다운 이후 보상 확인과 “1공을 받았어요” 안내까지 배속 없이 담았습니다.'}
 ];
 const viewer = document.querySelector('.video-dialog');
 const viewerVideo = viewer.querySelector('video');
@@ -40,6 +40,8 @@ for (const [index, demo] of demonstrations.entries()) {
   card.className = 'demo-card';
   const stage = document.createElement('div');
   stage.className = 'demo-stage';
+  const actions = document.createElement('div');
+  actions.className = 'demo-actions';
   const phone = document.createElement('div');
   phone.className = 'phone';
   if (demo.video) {
@@ -65,7 +67,7 @@ for (const [index, demo] of demonstrations.entries()) {
     });
     video.addEventListener('play', () => { toggle.textContent = '일시정지 Ⅱ'; toggle.setAttribute('aria-label', `${demo.title} 일시정지`); });
     video.addEventListener('pause', () => { toggle.textContent = '재생 ▶'; toggle.setAttribute('aria-label', `${demo.title} 재생`); });
-    stage.append(toggle);
+    actions.append(toggle);
     const expand = document.createElement('button');
     expand.type = 'button';
     expand.className = 'media-expand';
@@ -73,11 +75,7 @@ for (const [index, demo] of demonstrations.entries()) {
     expand.setAttribute('aria-label', `${demo.title} 영상 크게 보기`);
     expand.setAttribute('aria-haspopup', 'dialog');
     expand.addEventListener('click', () => openViewer(demo, expand));
-    stage.append(expand);
-    const duration = document.createElement('span');
-    duration.className = 'demo-duration';
-    duration.textContent = demo.duration;
-    stage.append(duration);
+    actions.prepend(expand);
   } else {
     const image = document.createElement('img');
     image.src = demo.image;
@@ -87,7 +85,7 @@ for (const [index, demo] of demonstrations.entries()) {
     image.height = 956;
     phone.append(image);
   }
-  stage.append(phone);
+  stage.append(phone, actions);
   card.append(stage);
   const number = document.createElement('span');
   number.className = 'demo-index';
@@ -100,7 +98,10 @@ for (const [index, demo] of demonstrations.entries()) {
   related.className = 'demo-related';
   related.href = demo.related;
   related.textContent = `${demo.relatedLabel} ↓`;
-  card.append(number, heading, description, related);
+  const copy = document.createElement('div');
+  copy.className = 'demo-copy';
+  copy.append(number, heading, description, related);
+  card.append(copy);
   grid.append(card);
 }
 
